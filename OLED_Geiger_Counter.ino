@@ -29,9 +29,9 @@
 #include <Wire.h>
 #endif
 
-#define COUNT_SIZE 10
+#define COUNT_SIZE 20
 
-const float ver = 1.1;          //  firmware version
+const float ver = 1.2;          //  firmware version
 const int ledPin = LED_BUILTIN; //  output pin for LED
 const int batt_pin = A1;        //  input pin for the battery voltage
 const int modePin = 2;          //  input pin for the mode button
@@ -112,6 +112,7 @@ void show_cpm(void) {
     for (i=0;i<COUNT_SIZE;i++)
       total+=per_sec[i];
   }
+  total=total*60/COUNT_SIZE;   // adjust to counts per minute
   sprintf(str, "%06ld", total);
   display(str, "Counts per minute");
 
